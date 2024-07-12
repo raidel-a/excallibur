@@ -1,24 +1,33 @@
+//  Created by Raidel Almeida on 6/28/24.
 //
 //  ContentView.swift
 //  excallibur
 //
-//  Created by Raidel Almeida on 6/28/24.
 //
 
 import SwiftUI
 
+@available(iOS 17.0, *)
 struct ContentView: View {
+    @StateObject private var viewModel = ProximityDetectorViewModel()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            TrackerSelectionView()
+                .tabItem {
+                    Label("Trackers", systemImage: "figure.run")
+                }
+            
+            StatsView()
+                .tabItem {
+                    Label("Stats", systemImage: "chart.bar")
+                }
+            
+            SettingsView()
+                .tabItem {
+                    Label("Profile", systemImage: "person.circle")
+                }
         }
-        .padding()
+        .environmentObject(viewModel)
     }
-}
-
-#Preview {
-    ContentView()
 }
