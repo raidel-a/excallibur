@@ -5,49 +5,81 @@
 //
 //
 
-import SwiftUI
 import AVFoundation
+import Combine
+import SwiftUI
 import UIKit
 
 struct ProximityDetectorView: View {
-    @EnvironmentObject var viewModel: ProximityDetectorViewModel
+    @StateObject private var viewModel = ProximityDetectorViewModel()
     @Environment(\.modelContext) private var modelContext
     
     var body: some View {
         VStack {
-            Text("Proximity State: \(viewModel.proximityState ? "Near" : "Far")")
+            Text("Proximity: \(viewModel.proximityState ? "Near" : "Far")")
                 .font(.title)
                 .padding()
-            
-            Text("Push-up Count: \(viewModel.objectCount)")
-                .font(.largeTitle)
-                .padding()
+            Spacer()
+            HStack {
+                Button(action: {
+                    viewModel.updateCount(0, 1, false)
+                }) {
+                    Image(systemName: "minus.circle.fill")
+                        .font(.largeTitle)
+                        .foregroundColor(.orange)
+                }
+                
+                Text("Count: \(viewModel.objectCount)")
+                    .font(.largeTitle)
+                    .padding()
+                
+                Button(action: {
+                    viewModel.updateCount(1, 0, false)
+                }) {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.largeTitle)
+                        .foregroundColor(.yellow)
+                }
+            }
             
             Text("Time: \(viewModel.formattedTime)")
                 .font(.title2)
                 .padding()
             
             HStack {
-                Button(action: viewModel.resetCount) {
+                Button(action: {
+                    viewModel.updateCount(0, 0, true)
+                }) {
                     Text("Reset Count")
                 }
                 .padding()
+                .background(.teal)
+                .cornerRadius(10)
                 
                 Button(action: viewModel.toggleTimer) {
                     Text(viewModel.isTimerRunning ? "Pause" : "Start")
                 }
+//                .frame(minWidth: 0, maxWidth: 200)
                 .padding()
+                .background(.mint)
+                .cornerRadius(10)
                 
                 Button(action: viewModel.resetTimer) {
                     Text("Reset Timer")
                 }
                 .padding()
-            }
-            Button("Save Workout") {
-                saveWorkout()
+                .background(.teal)
+                .cornerRadius(10)
             }
             .padding()
-            .background(Color.blue)
+            .foregroundColor(.white)
+                
+            Spacer()
+            Button("Save Workout") {
+                viewModel.saveWorkout()
+            }
+            .padding()
+            .background(.cyan)
             .foregroundColor(.white)
             .cornerRadius(10)
             .disabled(!viewModel.isTimerRunning && viewModel.objectCount == 0)
@@ -60,33 +92,13 @@ struct ProximityDetectorView: View {
             viewModel.stopMonitoring()
         }
     }
-    
-    private func saveWorkout() {
-        let workout = WorkoutData(date: Date(), duration: viewModel.elapsedTime, count: viewModel.objectCount, type: .pushup)
-        modelContext.insert(workout)
-        do {
-            try modelContext.save()
-            print("Workout saved successfully: \(workout)")
-        } catch {
-            print("Error saving workout: \(error)")
-        }
-        viewModel.stopMonitoring()
-        viewModel.resetTimer()
-        viewModel.resetCount()
-    }
 }
-
-
-
-
-
 
 class ProximityDetectorViewModel: ObservableObject {
     @Published var proximityState = false
     @Published var objectCount = 0
     @Published var formattedTime = "00:00:00"
     @Published var isTimerRunning = false
-    
     @Published var elapsedTime: TimeInterval = 0
     
     @AppStorage("isHapticFeedbackEnabled") private var isHapticFeedbackEnabled = true
@@ -94,14 +106,15 @@ class ProximityDetectorViewModel: ObservableObject {
     @AppStorage("selectedVoiceType") private var selectedVoiceType = "en-US"
     @AppStorage("voiceSpeed") private var voiceSpeed: Double = 0.6
     
-    var availableVoiceTypes: [String] {
-        AVSpeechSynthesisVoice.speechVoices().compactMap { $0.language }
-    }
-    
     private let device = UIDevice.current
     private let synthesizer = AVSpeechSynthesizer()
     private var timer: Timer?
-//    private var elapsedTime: TimeInterval = 0
+    
+    private let dataSource: WorkoutDataSource
+    
+    init(dataSource: WorkoutDataSource = .shared) {
+        self.dataSource = dataSource
+    }
     
     func startMonitoring() {
         device.isProximityMonitoringEnabled = true
@@ -151,10 +164,26 @@ class ProximityDetectorViewModel: ObservableObject {
         }
     }
 
+//    func resetCount() {
+//        objectCount = 0
+//        announceCount()
+//    }
     
-    func resetCount() {
-        objectCount = 0
-        announceCount()
+    func updateCount(_ increment: Int?, _ decrement: Int?, _ reset: Bool?) {
+        if let increment = increment {
+            objectCount += increment
+//            announceCount()
+        }
+        
+        if let decrement = decrement, objectCount - decrement >= 0 {
+            objectCount -= decrement
+//            announceCount()
+        }
+        
+        if let reset = reset, reset {
+            objectCount = 0
+            announceCount()
+        }
     }
     
     func toggleTimer() {
@@ -185,10 +214,25 @@ class ProximityDetectorViewModel: ObservableObject {
         updateFormattedTime()
     }
     
+    @MainActor func saveWorkout() {
+        let workout = WorkoutData(date: Date(), duration: elapsedTime, count: objectCount, type: "pushup")
+        dataSource.addWorkout(workout)
+        print("Workout saved successfully: \(workout)")
+        stopMonitoring()
+        resetTimer()
+        updateCount(0, 0, true)
+    }
+    
     private func updateFormattedTime() {
         let hours = Int(elapsedTime) / 3600
         let minutes = (Int(elapsedTime) % 3600) / 60
         let seconds = Int(elapsedTime) % 60
         formattedTime = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
+}
+
+struct ProximityDetectorView_Previews: PreviewProvider {
+    static var previews: some View {
+        ProximityDetectorView()
     }
 }

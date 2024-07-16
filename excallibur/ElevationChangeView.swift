@@ -277,12 +277,13 @@ struct ElevationChangeView: View {
     }
 
     private func saveWorkout() {
-        let workout = WorkoutData(date: Date(), duration: motionManager.workoutDuration, count: motionManager.squatCount, type: .squat)
+        let workout = WorkoutData(date: Date(), duration: motionManager.workoutDuration, count: motionManager.squatCount, type: "squat")
         modelContext.insert(workout)
         do {
             try modelContext.save()
+            print("Workout saved successfully")
         } catch {
-            print("Error saving workout: \(error)")
+            print("Failed to save workout: \(error)")
         }
         motionManager.stopTracking()
     }

@@ -1,135 +1,169 @@
-//
-//  StatsView.swift
-//  excallibur
-//
-//  Created by Raidel Almeida on 6/30/24.
-//
+    //
+    //  StatsView.swift
+    //  excallibur
+    //
+    //  Created by Raidel Almeida on 6/30/24.
+    //
 
 import SwiftUI
 import SwiftData
+import Charts
 
 struct StatsView: View {
+        //    @Query private var workouts: [WorkoutData]
     @State private var sortOrder: SortDescriptor<WorkoutData> = SortDescriptor(\WorkoutData.date, order: .reverse)
-    @State private var workoutType: WorkoutType = .pushup
-    @Environment(\.modelContext) private var modelContext
-    @State private var refreshID = UUID()
+    @State private var selectedWorkoutType = "pushup"
+    @State private var showGraph = true
+    @Query(sort: [SortDescriptor(\WorkoutData.date, order: .reverse)]) private var workouts: [WorkoutData]
+    
+    
     
     var body: some View {
         NavigationView {
             VStack {
-                Picker("Workout Type", selection: $workoutType) {
-                    Text("Pushups").tag(WorkoutType.pushup)
-                    Text("Squats").tag(WorkoutType.squat)
+                Picker("Workout Type", selection: $selectedWorkoutType) {
+                    Text("Pushups").tag("pushup")
+                    Text("Squats").tag("squat")
                 }
                 .pickerStyle(.segmented)
                 .padding()
                 
-                WorkoutListView(workoutType: workoutType, sortOrder: sortOrder)
-                    .id(refreshID)
                 
-                Button("Add Sample Data") {
-                    addSampleData()
+                if showGraph {
+                    WorkoutChart(workouts: filteredWorkouts)
+                } else {
+                    List {
+                        ForEach(filteredWorkouts) { workout in
+                            WorkoutRow(workout: workout)
+                        }
+                        .onDelete(perform: deleteWorkout)
+                    }
                 }
-                .padding()
-                
-                Button("Refresh Data") {
-                    refreshData()
-                }
-                .padding()
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .navigationTitle("Workout History")
             .toolbar {
-                Menu("Sort") {
-                    Button("Date (Newest First)") {
-                        sortOrder = SortDescriptor(\WorkoutData.date, order: .reverse)
-                    }
-                    Button("Date (Oldest First)") {
-                        sortOrder = SortDescriptor(\WorkoutData.date, order: .forward)
-                    }
-                    Button("Count (Highest First)") {
-                        sortOrder = SortDescriptor(\WorkoutData.count, order: .reverse)
-                    }
-                    Button("Duration (Longest First)") {
-                        sortOrder = SortDescriptor(\WorkoutData.duration, order: .reverse)
-                    }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        showGraph.toggle()
+                    }) {
+                        Image(systemName: showGraph ? "list.bullet" : "chart.bar")
+                    }.contentTransition(.symbolEffect(.replace))
                 }
-            }
-        }
-        .onAppear {
-            refreshData()
-        }
-    }
-    
-    private func addSampleData() {
-        let pushupWorkout = WorkoutData(date: Date(), duration: 300, count: 50, type: .pushup)
-        let squatWorkout = WorkoutData(date: Date().addingTimeInterval(-86400), duration: 400, count: 30, type: .squat)
-        
-        modelContext.insert(pushupWorkout)
-        modelContext.insert(squatWorkout)
-        
-        do {
-            try modelContext.save()
-            print("Sample data added successfully")
-            refreshData()
-        } catch {
-            print("Failed to save sample data: \(error)")
-        }
-    }
-    
-    private func refreshData() {
-        refreshID = UUID()
-    }
-}
-
-struct WorkoutListView: View {
-    @Query private var workouts: [WorkoutData]
-    @State private var debugMessage: String = ""
-    
-    init(workoutType: WorkoutType, sortOrder: SortDescriptor<WorkoutData>) {
-        _workouts = Query(filter: #Predicate<WorkoutData> { workout in
-            workout.type == workoutType
-        }, sort: [sortOrder])
-    }
-    
-    var body: some View {
-        VStack {
-            Text(debugMessage)
-                .font(.caption)
-                .foregroundColor(.red)
-            
-            if workouts.isEmpty {
-                Text("No workouts found")
-                    .foregroundColor(.secondary)
-            } else {
-                List {
-                    ForEach(workouts) { workout in
-                        VStack(alignment: .leading) {
-                            Text(workout.date, style: .date)
-                                .font(.headline)
-                            Text("Duration: \(formatDuration(workout.duration))")
-                            Text("\(workout.type == .pushup ? "Pushups" : "Squats"): \(workout.count)")
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Menu("Sort") {
+                        Button("Date (Newest First)") {
+                            sortOrder = SortDescriptor(\WorkoutData.date, order: .reverse)
+                        }
+                        Button("Date (Oldest First)") {
+                            sortOrder = SortDescriptor(\WorkoutData.date, order: .forward)
+                        }
+                        Button("Count (Highest First)") {
+                            sortOrder = SortDescriptor(\WorkoutData.count, order: .reverse)
+                        }
+                        Button("Duration (Longest First)") {
+                            sortOrder = SortDescriptor(\WorkoutData.duration, order: .reverse)
                         }
                     }
                 }
             }
         }
-        .onAppear {
-            debugQuery()
-        }
     }
     
-    private func formatDuration(_ duration: TimeInterval) -> String {
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.hour, .minute, .second]
-        formatter.unitsStyle = .abbreviated
-        return formatter.string(from: duration) ?? ""
+    var filteredWorkouts: [WorkoutData] {
+        workouts.filter { $0.type == selectedWorkoutType }
     }
     
-    private func debugQuery() {
-        debugMessage = "Total workouts: \(workouts.count)"
-        print("Debug: \(debugMessage)")
-        for workout in workouts {
-            print("Workout: date=\(workout.date), type=\(workout.type.rawValue), count=\(workout.count)")
+    func deleteWorkout(at offsets: IndexSet) {
+        for index in offsets {
+            let workout = workouts[index]
+            WorkoutDataSource.shared.deleteWorkout(workout)
         }
     }
 }
+
+extension TimeInterval {
+    func formatted() -> String {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.unitsStyle = .abbreviated
+        return formatter.string(from: self) ?? ""
+    }
+}
+
+struct WorkoutRow: View {
+    let workout: WorkoutData
+    
+    var body: some View {
+        HStack(alignment: .center) {
+            VStack(alignment: .leading) {
+                Text(workout.date, style: .date)
+                    .font(.headline)
+                Text("Duration: \(workout.duration.formatted())")
+            }
+            Spacer()
+            Text("\(workout.type == "pushup" ? "Pushups" : "Squats"): \(workout.count)")
+        }
+    }
+}
+
+struct WorkoutChart: View {
+    let workouts: [WorkoutData]
+    
+    var body: some View {
+        Chart {
+            ForEach(workouts) { workout in
+                PointMark(
+                    x: .value("Date", workout.date),
+                    y: .value("Count", workout.count)
+                )
+            }
+        }
+        .aspectRatio(2, contentMode: .fit)
+        .padding()
+        .frame(maxWidth: .infinity, maxHeight
+               : 200, alignment: .top)
+        .chartPlotStyle { chartContent in
+            chartContent
+                .foregroundStyle(workouts.first?.type == "pushup" ? .green : .red)
+                .background(Color.secondary.opacity(0.05))
+        }
+    }
+}
+
+extension WorkoutData {
+    static func sampleData() -> [WorkoutData] {
+        let calendar = Calendar.current
+        let now = Date()
+        var workoutDataArray = [WorkoutData]()
+        
+        for i in 20...30 {
+            let date = calendar.date(byAdding: .day, value: -i, to: now)!
+            let duration = Int.random(in: 200...600)
+            let count = Int.random(in: 20...70)
+            let type = Bool.random() ? "pushup" : "squat"
+            
+            workoutDataArray.append(WorkoutData(id: UUID(), date:date, duration:TimeInterval(duration), count: count, type: type))
+        }
+        return workoutDataArray
+        
+    }
+}
+
+struct StatsView_Previews: PreviewProvider {
+    static var previews: some View {
+        StatsView()
+            .modelContainer(for: WorkoutData.self, inMemory: true) { result in
+                switch result {
+                    case .success(let container):
+                        for workout in WorkoutData.sampleData() {
+                            container.mainContext.insert(workout)
+                        }
+                    case .failure(let error):
+                        fatalError("Failed to create model container: \(error.localizedDescription)")
+                }
+            }
+    }
+}
+

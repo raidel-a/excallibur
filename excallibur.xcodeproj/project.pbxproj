@@ -12,6 +12,8 @@
 		310276AC2C321E3000F4207C /* TrackerSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310276AB2C321E2800F4207C /* TrackerSelectionView.swift */; };
 		310276B02C321EF800F4207C /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310276AF2C321EF200F4207C /* StatsView.swift */; };
 		312752242C40746900DC26FE /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312752232C40745F00DC26FE /* DataModel.swift */; };
+		312752292C40CDDC00DC26FE /* WorkoutDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312752282C40CDCA00DC26FE /* WorkoutDataSource.swift */; };
+		3127522B2C42D37700DC26FE /* seed.json in Resources */ = {isa = PBXBuildFile; fileRef = 3127522A2C42D36B00DC26FE /* seed.json */; };
 		31EBB2662C2E875B00E4DA30 /* excalliburApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBB2652C2E875B00E4DA30 /* excalliburApp.swift */; };
 		31EBB2682C2E875B00E4DA30 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBB2672C2E875B00E4DA30 /* ContentView.swift */; };
 		31EBB26A2C2E875C00E4DA30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31EBB2692C2E875C00E4DA30 /* Assets.xcassets */; };
@@ -45,7 +47,9 @@
 		310276AB2C321E2800F4207C /* TrackerSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerSelectionView.swift; sourceTree = "<group>"; };
 		310276AF2C321EF200F4207C /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		312752222C3F301200DC26FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		312752232C40745F00DC26FE /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		312752232C40745F00DC26FE /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; usesTabs = 0; };
+		312752282C40CDCA00DC26FE /* WorkoutDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDataSource.swift; sourceTree = "<group>"; };
+		3127522A2C42D36B00DC26FE /* seed.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = seed.json; sourceTree = "<group>"; };
 		31EBB2622C2E875B00E4DA30 /* excallibur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = excallibur.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31EBB2652C2E875B00E4DA30 /* excalliburApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = excalliburApp.swift; sourceTree = "<group>"; };
 		31EBB2672C2E875B00E4DA30 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 		31EBB2642C2E875B00E4DA30 /* excallibur */ = {
 			isa = PBXGroup;
 			children = (
+				3127522A2C42D36B00DC26FE /* seed.json */,
+				312752282C40CDCA00DC26FE /* WorkoutDataSource.swift */,
 				312752232C40745F00DC26FE /* DataModel.swift */,
 				312752222C3F301200DC26FE /* Info.plist */,
 				310276AF2C321EF200F4207C /* StatsView.swift */,
@@ -252,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31EBB26D2C2E875C00E4DA30 /* Preview Assets.xcassets in Resources */,
+				3127522B2C42D37700DC26FE /* seed.json in Resources */,
 				31EBB26A2C2E875C00E4DA30 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,6 +290,7 @@
 				31EBB2682C2E875B00E4DA30 /* ContentView.swift in Sources */,
 				310276AA2C321A8500F4207C /* ElevationChangeView.swift in Sources */,
 				310276AC2C321E3000F4207C /* TrackerSelectionView.swift in Sources */,
+				312752292C40CDDC00DC26FE /* WorkoutDataSource.swift in Sources */,
 				310276B02C321EF800F4207C /* StatsView.swift in Sources */,
 				31EBB2662C2E875B00E4DA30 /* excalliburApp.swift in Sources */,
 			);
