@@ -144,7 +144,6 @@ struct MTSlide: View {
 					.padding([.top, .bottom], thumbnailTopBottomPadding)
 					.padding([.leading, .trailing], thumbnailLeadingTrailingPadding)
 					.background(thumbnailBackgroundColor)
-					.cornerRadius(sliderCornerRadius)
 					.offset(x: draggableState.offsetX)
 					.animation(draggableState.isReady ? resetAnimation : nil)
 					.gesture(draggableState.reachEnd || isDisabled ? nil : drag)

@@ -15,97 +15,128 @@ import UIKit
 struct ProximityDetectorView: View {
 	// MARK: Internal
 
+	let cornerRadius: CGFloat = 15
+
 	var body: some View {
-		VStack {
-			Text("Proximity: \(viewModel.proximityState ? "Near" : "Far")")
-				.font(.title)
-				.padding()
-			Spacer()
+		let mainColor = Color.Neumorphic.main
+		let secondaryColor = Color.Neumorphic.secondary
+		ZStack {
+			mainColor.edgesIgnoringSafeArea(.all)
+			VStack {
+				Text("Proximity: \(viewModel.proximityState ? "Near" : "Far")")
+					.font(.title)
+					.padding()
+				Spacer()
 
-			HStack {
-				Button(action: {
-					viewModel.updateCount(0, 1, false)
-				}) {
-					Image(systemName: "minus.circle.fill")
-						.font(.largeTitle)
-						.foregroundColor(.orange)
-				}
-
-				Text("\(viewModel.objectCount)")
-					.font(.custom("Avenir Next", size: 100))
-					.fontWeight(.bold)
-					.rotation3DEffect(.degrees(flipX), axis: (x: 1, y: 0, z: 0))
-					.animation(.default.delay(0), value: flipX)
+				ZStack {
+					ActivityProgressView(
+						color: activityProgress == 1 ? mainColor : secondaryColor,
+						progress: activityProgress,
+						width: 30
+					)
+					.frame(width: 300, height: 300)
 					.padding()
 
-				Button(action: {
-					viewModel.updateCount(1, 0, false)
-				}) {
-					Image(systemName: "plus.circle.fill")
-						.font(.largeTitle)
-						.foregroundColor(.yellow)
-				}
-			}
+					HStack {
+						Button(action: {
+							viewModel.updateCount(0, 1, false)
+						}) {
+							Image(systemName: "minus.circle.fill")
+								.font(.largeTitle)
+								.foregroundColor(.orange)
+						}
 
-			Text("Time: \(viewModel.formattedTime)")
-				.font(.title2)
-				.padding()
+						Text("\(viewModel.objectCount)")
+							.font(.custom("Avenir Next", size: 100))
+							.fontWeight(.bold)
+							.rotation3DEffect(.degrees(flipX), axis: (x: 1, y: 0, z: 0))
+							.animation(.default.delay(0), value: flipX)
+							.padding()
 
-			Button(action: viewModel.toggleTimer) {
-				Text(viewModel.isTimerRunning ? "Pause" : "Start")
-			}
-			.padding()
-			.foregroundColor(.white)
-			.background(.mint)
-			.cornerRadius(10)
-
-			HStack {
-				Button {
-					viewModel.updateCount(0, 0, true)
-					withAnimation(.bouncy) {
-						flipX = (flipX == .zero) ? 360 : .zero
+						Button(action: {
+							viewModel.updateCount(1, 0, false)
+						}) {
+							Image(systemName: "plus.circle.fill")
+								.font(.largeTitle)
+								.foregroundColor(.yellow)
+						}
 					}
-				} label: {
-					Text("Rest Count")
 				}
-				.padding()
-				.background(.teal)
-				.cornerRadius(10)
-				Button(action: viewModel.resetTimer) {
-					Text("Reset Timer")
-				}
-				.padding()
-				.background(.teal)
-				.cornerRadius(10)
-			}
-			.padding()
-			.foregroundColor(.white)
 
-//			Spacer()
-			MTSlide(
-				isDisabled: !viewModel.isTimerRunning && viewModel.objectCount == 0,
-				thumbnailTopBottomPadding: 5,
-				thumbnailLeadingTrailingPadding: 5,
-				text: "Save Workout",
-				iconName: "plus",
-				didReachEndAction: { slider in
-					viewModel.saveWorkout()
-					slider.resetState()
+				Text("Time: \(viewModel.formattedTime)")
+					.font(.title2)
+					.padding()
+
+				Button(action: viewModel.toggleTimer) {
+					Text(viewModel.isTimerRunning ? "Pause" : "Start").bold()
+				}.softButtonStyle(RoundedRectangle(cornerRadius: cornerRadius))
+					.padding()
+
+				HStack {
+					Button {
+						viewModel.updateCount(0, 0, true)
+						withAnimation(.bouncy) {
+							flipX = (flipX == .zero) ? 360 : .zero
+						}
+					} label: {
+						Text("Rest Count").bold()
+					}.softButtonStyle(RoundedRectangle(cornerRadius: cornerRadius))
+						.padding()
+
+					Button(action: viewModel.resetTimer) {
+						Text("Reset Timer").bold()
+					}.softButtonStyle(RoundedRectangle(cornerRadius: cornerRadius))
+						.padding()
+				}
+
+				MTSlide(
+					isDisabled: !viewModel.isTimerRunning && viewModel.objectCount == 0,
+					thumbnailTopBottomPadding: 5,
+					thumbnailLeadingTrailingPadding: 5,
+					text: "Save Workout",
+					textColor: mainColor,
+					thumbnailColor: mainColor,
+					sliderBackgroundColor: secondaryColor,
+					iconName: "plus",
+					didReachEndAction: { slider in
+						viewModel.saveWorkout()
+						slider.resetState()
+					}
+				)
+				.frame(height: 60)
+				.padding()
+			}
+			.navigationBarItems(
+				trailing:
+				Button(action: {
+					showModal.toggle()
+				}) {
+					Image(systemName: "gear")
 				}
 			)
-			.frame(height: 60)
-			.padding()
-		}
-		.navigationTitle("Push-up Tracker")
-		.onAppear {
-			viewModel.startMonitoring()
-		}
-		.onDisappear {
-			viewModel.stopMonitoring()
+			.sheet(isPresented: $showModal) {
+				VStack {
+					Text("Hello, I'm a modal!")
+					Button("Dismiss") {
+						showModal = false
+					}
+				}.presentationDetents([.medium])
+			}
+
+			.onAppear {
+				viewModel.startMonitoring()
+			}
+			.onDisappear {
+				viewModel.stopMonitoring()
+			}
 		}
 	}
 
 	// MARK: Private
+
+	@State private var showModal = false
+
+	@State private var activityProgress: CGFloat = 0.5
 
 	@State private var flipAngle = Double.zero
 
@@ -251,7 +282,7 @@ class ProximityDetectorViewModel: ObservableObject {
 		let hours = Int(elapsedTime) / 3600
 		let minutes = (Int(elapsedTime) % 3600) / 60
 		let seconds = Int(elapsedTime) % 60
-		formattedTime = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+		formattedTime = String(format: "%02d:%02d", minutes, seconds)
 	}
 }
 
@@ -260,5 +291,6 @@ class ProximityDetectorViewModel: ObservableObject {
 struct ProximityDetectorView_Previews: PreviewProvider {
 	static var previews: some View {
 		ProximityDetectorView()
+			.environment(\.colorScheme, .dark)
 	}
 }

@@ -15,6 +15,14 @@
 		312752292C40CDDC00DC26FE /* WorkoutDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312752282C40CDCA00DC26FE /* WorkoutDataSource.swift */; };
 		3127522B2C42D37700DC26FE /* seed.json in Resources */ = {isa = PBXBuildFile; fileRef = 3127522A2C42D36B00DC26FE /* seed.json */; };
 		31AEA6382C4F203100100E5A /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AEA6372C4F203100100E5A /* Slider.swift */; };
+		31BC94262C50AB3B0089DEDD /* CircularProg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BC94252C50AB3B0089DEDD /* CircularProg.swift */; };
+		31CF0A2B2C51D82700E9A846 /* View+InverseMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CF0A292C51D82700E9A846 /* View+InverseMask.swift */; };
+		31CF0A2C2C51D82700E9A846 /* SoftInnerShadowViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CF0A272C51D82700E9A846 /* SoftInnerShadowViewModifier.swift */; };
+		31CF0A2D2C51D82700E9A846 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CF0A232C51D82700E9A846 /* ColorExtension.swift */; };
+		31CF0A2E2C51D82700E9A846 /* SoftOuterShadowViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CF0A282C51D82700E9A846 /* SoftOuterShadowViewModifier.swift */; };
+		31CF0A2F2C51D82700E9A846 /* SoftDynamicToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CF0A262C51D82700E9A846 /* SoftDynamicToggleStyle.swift */; };
+		31CF0A302C51D82700E9A846 /* NeumorphicKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CF0A242C51D82700E9A846 /* NeumorphicKit.swift */; };
+		31CF0A312C51D82700E9A846 /* SoftButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CF0A252C51D82700E9A846 /* SoftButtonStyle.swift */; };
 		31EBB2662C2E875B00E4DA30 /* excalliburApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBB2652C2E875B00E4DA30 /* excalliburApp.swift */; };
 		31EBB2682C2E875B00E4DA30 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBB2672C2E875B00E4DA30 /* ContentView.swift */; };
 		31EBB26A2C2E875C00E4DA30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31EBB2692C2E875C00E4DA30 /* Assets.xcassets */; };
@@ -52,6 +60,14 @@
 		312752282C40CDCA00DC26FE /* WorkoutDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDataSource.swift; sourceTree = "<group>"; };
 		3127522A2C42D36B00DC26FE /* seed.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = seed.json; sourceTree = "<group>"; };
 		31AEA6372C4F203100100E5A /* Slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
+		31BC94252C50AB3B0089DEDD /* CircularProg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProg.swift; sourceTree = "<group>"; };
+		31CF0A232C51D82700E9A846 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		31CF0A242C51D82700E9A846 /* NeumorphicKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphicKit.swift; sourceTree = "<group>"; };
+		31CF0A252C51D82700E9A846 /* SoftButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftButtonStyle.swift; sourceTree = "<group>"; };
+		31CF0A262C51D82700E9A846 /* SoftDynamicToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftDynamicToggleStyle.swift; sourceTree = "<group>"; };
+		31CF0A272C51D82700E9A846 /* SoftInnerShadowViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftInnerShadowViewModifier.swift; sourceTree = "<group>"; };
+		31CF0A282C51D82700E9A846 /* SoftOuterShadowViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftOuterShadowViewModifier.swift; sourceTree = "<group>"; };
+		31CF0A292C51D82700E9A846 /* View+InverseMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+InverseMask.swift"; sourceTree = "<group>"; };
 		31EBB2622C2E875B00E4DA30 /* excallibur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = excallibur.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31EBB2652C2E875B00E4DA30 /* excalliburApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = excalliburApp.swift; sourceTree = "<group>"; };
 		31EBB2672C2E875B00E4DA30 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -90,6 +106,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		31CF0A2A2C51D82700E9A846 /* Neumorphic */ = {
+			isa = PBXGroup;
+			children = (
+				31CF0A232C51D82700E9A846 /* ColorExtension.swift */,
+				31CF0A242C51D82700E9A846 /* NeumorphicKit.swift */,
+				31CF0A252C51D82700E9A846 /* SoftButtonStyle.swift */,
+				31CF0A262C51D82700E9A846 /* SoftDynamicToggleStyle.swift */,
+				31CF0A272C51D82700E9A846 /* SoftInnerShadowViewModifier.swift */,
+				31CF0A282C51D82700E9A846 /* SoftOuterShadowViewModifier.swift */,
+				31CF0A292C51D82700E9A846 /* View+InverseMask.swift */,
+			);
+			path = Neumorphic;
+			sourceTree = "<group>";
+		};
 		31EBB2592C2E875A00E4DA30 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +145,7 @@
 			children = (
 				3127522A2C42D36B00DC26FE /* seed.json */,
 				312752222C3F301200DC26FE /* Info.plist */,
+				31BC94252C50AB3B0089DEDD /* CircularProg.swift */,
 				31EBB2672C2E875B00E4DA30 /* ContentView.swift */,
 				312752232C40745F00DC26FE /* DataModel.swift */,
 				310276A92C321A7800F4207C /* ElevationChangeView.swift */,
@@ -126,6 +157,7 @@
 				310276AB2C321E2800F4207C /* TrackerSelectionView.swift */,
 				312752282C40CDCA00DC26FE /* WorkoutDataSource.swift */,
 				31EBB2692C2E875C00E4DA30 /* Assets.xcassets */,
+				31CF0A2A2C51D82700E9A846 /* Neumorphic */,
 				31EBB26B2C2E875C00E4DA30 /* Preview Content */,
 			);
 			path = excallibur;
@@ -172,6 +204,8 @@
 			dependencies = (
 			);
 			name = excallibur;
+			packageProductDependencies = (
+			);
 			productName = excallibur;
 			productReference = 31EBB2622C2E875B00E4DA30 /* excallibur.app */;
 			productType = "com.apple.product-type.application";
@@ -244,6 +278,8 @@
 				Base,
 			);
 			mainGroup = 31EBB2592C2E875A00E4DA30;
+			packageReferences = (
+			);
 			productRefGroup = 31EBB2632C2E875B00E4DA30 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -292,7 +328,15 @@
 				310276A82C32131100F4207C /* SettingsView.swift in Sources */,
 				31EBB2682C2E875B00E4DA30 /* ContentView.swift in Sources */,
 				31AEA6382C4F203100100E5A /* Slider.swift in Sources */,
+				31BC94262C50AB3B0089DEDD /* CircularProg.swift in Sources */,
 				310276AA2C321A8500F4207C /* ElevationChangeView.swift in Sources */,
+				31CF0A2B2C51D82700E9A846 /* View+InverseMask.swift in Sources */,
+				31CF0A2C2C51D82700E9A846 /* SoftInnerShadowViewModifier.swift in Sources */,
+				31CF0A2D2C51D82700E9A846 /* ColorExtension.swift in Sources */,
+				31CF0A2E2C51D82700E9A846 /* SoftOuterShadowViewModifier.swift in Sources */,
+				31CF0A2F2C51D82700E9A846 /* SoftDynamicToggleStyle.swift in Sources */,
+				31CF0A302C51D82700E9A846 /* NeumorphicKit.swift in Sources */,
+				31CF0A312C51D82700E9A846 /* SoftButtonStyle.swift in Sources */,
 				310276AC2C321E3000F4207C /* TrackerSelectionView.swift in Sources */,
 				312752292C40CDDC00DC26FE /* WorkoutDataSource.swift in Sources */,
 				310276B02C321EF800F4207C /* StatsView.swift in Sources */,
