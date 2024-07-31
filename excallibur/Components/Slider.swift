@@ -1,16 +1,16 @@
 //
-//  Slider.swift
-//  excallibur
-//
-//  Created by Raidel Almeida on 7/22/24.
-//
-
-//
 //  MTSlideToOpen-SwiftUI.swift
 //  MTSlideToOpen-SwiftUI
 //
 //  Created by Le Manh Tien on 6/8/19.
 //  Copyright © 2019 io.tienle. All rights reserved.
+//
+
+//
+//  Slider.swift
+//  excallibur
+//
+//  Created by Raidel Almeida on 7/22/24.
 //
 
 import SwiftUI
@@ -125,31 +125,36 @@ struct MTSlide: View {
 					Text(text)
 						.frame(maxWidth: .infinity)
 						.padding([.leading], textLabelLeadingPadding)
-						.foregroundColor(isDisabled ? .gray : textColor)
+						.foregroundColor(isDisabled ? .gray : .white)
 						.opacity(draggableState.textColorOpacity)
-						.animation(draggableState.isReady ? resetAnimation : nil)
+						.animation(draggableState.isReady ? resetAnimation : nil, value: draggableState.textColorOpacity)
 				}
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
-				.background(sliderBackgroundColor)
+//				.background(sliderBackgroundColor)
+				.softInnerShadow(RoundedRectangle(cornerRadius: sliderCornerRadius))
 				.cornerRadius(sliderCornerRadius)
 				.padding([.top, .bottom], sliderTopBottomPadding)
+				.softOuterShadow()
 
 				Image(systemName: iconName)
-					.foregroundColor(iconColor)
+					.foregroundColor(isDisabled ? .gray : iconColor)
 					.font(.title.weight(.black))
 					.frame(maxWidth: .infinity, maxHeight: .infinity)
 					.aspectRatio(1.0, contentMode: .fit)
-					.background(isDisabled ? .gray : thumbnailColor)
+					.background(
+						isDisabled ? thumbnailBackgroundColor :
+							.gray.opacity(0.3))
 					.clipShape(Circle())
+					.softOuterShadow(offset: 5)
+					.softInnerShadow(Circle(), spread: 0.1)
 					.padding([.top, .bottom], thumbnailTopBottomPadding)
 					.padding([.leading, .trailing], thumbnailLeadingTrailingPadding)
 					.background(thumbnailBackgroundColor)
 					.offset(x: draggableState.offsetX)
-					.animation(draggableState.isReady ? resetAnimation : nil)
+					.animation(draggableState.isReady ? resetAnimation : nil, value: draggableState.offsetX)
 					.gesture(draggableState.reachEnd || isDisabled ? nil : drag)
 			})
 		}
-//		.background(Color.white)
 		.disabled(isDisabled)
 //		.opacity(isDisabled ? 0.5 : 1.0)
 	}

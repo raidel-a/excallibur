@@ -1,36 +1,27 @@
-//  Created by Raidel Almeida on 6/30/24.
 //
 //  TrackerSelectionView.swift
-//  excallibur
-//
 //
 
+import DataProvider
+import SwiftData
 import SwiftUI
 
-// MARK: - TrackerSelectionView
-
-@available(iOS 17.0, *)
 struct TrackerSelectionView: View {
-	var body: some View {
-		NavigationStack {
-			List {
-				NavigationLink("Push-ups (Proximity)", destination: ProximityDetectorView())
-				NavigationLink("Squats (Elevation)", destination: ElevationChangeView())
-			}
-			Grid {
-				
-			}
-			.navigationTitle("Select Exercise")
-			.navigationBarTitleDisplayMode(.inline)
+		// MARK: Internal
+
+		var body: some View {
+				NavigationStack {
+						List {
+								NavigationLink("Push-ups (Proximity)", destination: ProximityDetectorView())
+								NavigationLink("Squats (Elevation)", destination: ElevationChangeView())
+						}
+						.navigationTitle("Select Exercise")
+						.navigationBarTitleDisplayMode(.inline)
+				}
 		}
-	}
-}
 
-// MARK: - TrackerSelectionView_Previews
+		// MARK: Private
 
-@available(iOS 17.0, *)
-struct TrackerSelectionView_Previews: PreviewProvider {
-	static var previews: some View {
-		TrackerSelectionView()
-	}
+		@Environment(\.modelContext) private var modelContext
+		@Query private var workouts: [Workout]
 }
