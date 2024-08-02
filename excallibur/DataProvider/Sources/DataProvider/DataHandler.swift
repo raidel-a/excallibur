@@ -55,34 +55,32 @@ public actor DataHandler {
 	}
 
 	// MARK: - DailyTotal CRUD Operations
-
+	
 	@discardableResult
-	public func newDailyTotal(
-		date: Date,
-		pushups: Int
-	) throws -> PersistentIdentifier {
-		try ensureUniqueDailyTotal(date: date)
-		let dailyTotal = DailyTotal(date: date, pushups: pushups)
-		modelContext.insert(dailyTotal)
-		try modelContext.save()
-		return dailyTotal.persistentModelID
+	public func updateOrCreateDailyTotal(date: Date, pushups: Int? = nil, pushupsGoal: Int? = nil) throws -> PersistentIdentifier {
+		if let existingTotal = try getDailyTotal(for: date) {
+			if let pushups = pushups {
+				existingTotal.pushups = pushups
+			}
+			if let pushupsGoal = pushupsGoal {
+				existingTotal.pushupsGoal = pushupsGoal
+			}
+			try modelContext.save()
+			return existingTotal.persistentModelID
+		} else {
+			let newTotal = DailyTotal(date: date, pushups: pushups ?? 0, pushupsGoal: pushupsGoal ?? 0)
+			modelContext.insert(newTotal)
+			try modelContext.save()
+			return newTotal.persistentModelID
+		}
 	}
-
+	
 	public func getDailyTotal(for date: Date) throws -> DailyTotal? {
 		let startOfDay = Calendar.current.startOfDay(for: date)
 		let predicate = #Predicate<DailyTotal> { $0.date == startOfDay }
 		let descriptor = FetchDescriptor<DailyTotal>(predicate: predicate)
 		let results = try modelContext.fetch(descriptor)
 		return results.first
-	}
-
-	public func updateDailyTotal(
-		id: PersistentIdentifier,
-		pushups: Int
-	) throws {
-		guard let dailyTotal = self[id, as: DailyTotal.self] else { return }
-		dailyTotal.pushups = pushups
-		try modelContext.save()
 	}
 
 	public func deleteDailyTotal(id: PersistentIdentifier) throws {

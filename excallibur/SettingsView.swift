@@ -9,10 +9,20 @@ import DataProvider
 struct SettingsView: View {
 	@StateObject private var viewModel = SettingsViewModel()
 	@Environment(\.createDataHandler) private var createDataHandler
-	
+		@AppStorage("isDarkMode") private var isDarkMode = false
+		
+
 	var body: some View {
 		NavigationView {
 			Form {
+					Section(header: Text("Appearance")) {
+							HStack {
+											//                    Spacer()
+									Image(systemName: isDarkMode ? "moon.fill" : "sun.max.fill")
+											.foregroundColor(isDarkMode ? .yellow : .orange)
+									Toggle(isDarkMode ? "Dark Mode" : "Light Mode", isOn: $isDarkMode)
+							}
+					}
 				Section(header: Text("Feedback")) {
 					Toggle("Haptic Feedback", isOn: $viewModel.isHapticFeedbackEnabled)
 						.onChange(of: viewModel.isHapticFeedbackEnabled) { _, newValue in
@@ -24,12 +34,10 @@ struct SettingsView: View {
 				}
 				
 				Section(header: Text("Voice Settings")) {
-					Picker("Voice Type", selection: $viewModel.selectedVoiceType) {
-						ForEach(AVSpeechSynthesisVoice.speechVoices().compactMap(\.language), id: \.self) { voice in
-							Text(voice).tag(voice)
-						}
-					}
-					.pickerStyle(.menu)
+						VoiceTypePicker(selectedVoiceIdentifier: 
+																								$viewModel.selectedVoiceIdentifier)
+				}
+
 					
 					Slider(value: $viewModel.voiceSpeed, in: 0.1...1.0, step: 0.1) {
 						Text("Voice Speed")
@@ -45,26 +53,26 @@ struct SettingsView: View {
 					}
 				}
 				
-				Section(header: Text("Tracking")) {
-					Toggle("Use Button for Tracking", isOn: $viewModel.useButtonForTracking)
-					Toggle("Show Sensor Reading", isOn: $viewModel.showSensorReading)
-					
-					Slider(value: $viewModel.motionSensitivity, in: 0.05...0.5, step: 0.05) {
-						Text("Motion Sensitivity")
-					} minimumValueLabel: {
-						Text("Low")
-					} maximumValueLabel: {
-						Text("High")
-					}
-					.accessibilityValue(String(format: "%.2f", viewModel.motionSensitivity))
-				}
+//				Section(header: Text("Tracking")) {
+//					Toggle("Use Button for Tracking", isOn: $viewModel.useButtonForTracking)
+//					Toggle("Show Sensor Reading", isOn: $viewModel.showSensorReading)
+//					
+//					Slider(value: $viewModel.motionSensitivity, in: 0.05...0.5, step: 0.05) {
+//						Text("Motion Sensitivity")
+//					} minimumValueLabel: {
+//						Text("Low")
+//					} maximumValueLabel: {
+//						Text("High")
+//					}
+//					.accessibilityValue(String(format: "%.2f", viewModel.motionSensitivity))
+//				}
 				
-				Section {
-					Button("Reset to Defaults") {
-						viewModel.resetToDefaults()
-					}
-					.foregroundColor(.red)
-				}
+//				Section {
+//					Button("Reset to Defaults") {
+//						viewModel.resetToDefaults()
+//					}
+//					.foregroundColor(.red)
+//				}
 				
 				Section {
 					Text("App Version: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")")
@@ -74,11 +82,10 @@ struct SettingsView: View {
 			}
 			.navigationTitle("Settings")
 		}
-		.task {
-			await viewModel.loadSettings(createDataHandler: createDataHandler)
-		}
+
+		
 	}
-}
+
 
 class SettingsViewModel: ObservableObject {
 	@Published var isHapticFeedbackEnabled: Bool = UserDefaults.standard.bool(forKey: "isHapticFeedbackEnabled")
@@ -88,6 +95,19 @@ class SettingsViewModel: ObservableObject {
 	@Published var motionSensitivity: Double = UserDefaults.standard.double(forKey: "motionSensitivity")
 	@Published var useButtonForTracking: Bool = UserDefaults.standard.bool(forKey: "useButtonForTracking")
 	@Published var showSensorReading: Bool = UserDefaults.standard.bool(forKey: "showSensorReading")
+		
+		@Published var selectedVoiceIdentifier: String
+		
+		init() {
+				let currentLanguageCode = Locale.current.language.languageCode?.identifier ?? "en"
+				if let defaultVoice = AVSpeechSynthesisVoice.speechVoices().first(where: { $0.language.starts(with: currentLanguageCode) }) {
+						selectedVoiceIdentifier = defaultVoice.identifier
+				} else {
+								// Fallback to the first available voice if no match is found
+						selectedVoiceIdentifier = AVSpeechSynthesisVoice.speechVoices().first?.identifier ?? ""
+				}
+		}
+
 	
 	private let synthesizer = AVSpeechSynthesizer()
 	
@@ -127,4 +147,31 @@ class SettingsViewModel: ObservableObject {
 		UserDefaults.standard.set(useButtonForTracking, forKey: "useButtonForTracking")
 		UserDefaults.standard.set(showSensorReading, forKey: "showSensorReading")
 	}
+}
+
+
+
+struct VoiceTypePicker: View {
+		@Binding var selectedVoiceIdentifier: String
+		
+		private var availableVoices: [AVSpeechSynthesisVoice] {
+				AVSpeechSynthesisVoice.speechVoices().filter { voice in
+						voice.language.starts(with: Locale.current.language.languageCode?.identifier ?? "")
+				}
+		}
+		
+		var body: some View {
+				Picker("Voice Type", selection: $selectedVoiceIdentifier) {
+						ForEach(availableVoices, id: \.identifier) { voice in
+								Text(voiceDisplayName(for: voice))
+										.tag(voice.identifier)
+						}
+				}
+				.pickerStyle(.menu)
+		}
+		
+		private func voiceDisplayName(for voice: AVSpeechSynthesisVoice) -> String {
+				let languageName = Locale.current.localizedString(forLanguageCode: voice.language) ?? voice.language
+				return "\(voice.name) (\(languageName))"
+		}
 }

@@ -2,20 +2,18 @@
 //  ProximityCounterView.swift
 //
 
-//import AVFoundation
-//import Combine
 import DataProvider
 import SwiftData
 import SwiftUI
-//import UIKit
 
 // MARK: - ProximityDetectorView
 
 struct ProximityDetectorView: View {
 		@Environment(\.createDataHandler) private var createDataHandler
 		@StateObject private var viewModel = ProximityDetectorViewModel()
+		@AppStorage("Push-Up") private var pushupDailyGoal: Int = 100
+
 		@State private var showModal = false
-		@AppStorage("Push-Up") private var pushupDailyGoal: Int = 0
 		@State private var flipAngle = Double.zero
 		@State private var flipX = Double.zero
 
@@ -32,8 +30,14 @@ struct ProximityDetectorView: View {
 				ZStack {
 						mainColor.edgesIgnoringSafeArea(.all)
 						VStack {
+								Image("figure.pushup")
+										.resizable()
+										.scaledToFit()
+										.frame(width: 50, height: 50)
+										.rotationEffect(Angle(degrees: 75))
+
 								ZStack {
-										ProgressView(value: Double(activityProgress), total: Double(pushupDailyGoal))
+										ProgressView(value: Double(viewModel.dailyTotal + viewModel.objectCount), total: Double(viewModel.dailyGoal))
 												.progressViewStyle(CustomCircular(strokeColor: activityProgress >= 1 ? mainColor : secondaryColor))
 												.animation(.linear, value: activityProgress)
 												.frame(width: 300, height: 300)
@@ -70,11 +74,13 @@ struct ProximityDetectorView: View {
 										.padding()
 
 								Button(action: viewModel.toggleTimer) {
-										Text(viewModel.isTimerRunning ? "Pause" : "Start").bold()
+										Text(viewModel.isTimerRunning ? "Pause Timer" : "Start Timer").bold()
+												.foregroundStyle(viewModel.isTimerRunning ? .red : .green)
 								}.softButtonStyle(RoundedRectangle(cornerRadius: cornerRadius))
-										.padding()
+										.padding(.vertical)
 
-								HStack {
+								HStack(alignment: .center, spacing: 20) {
+										Spacer()
 										Button {
 												viewModel.updateCount(0, 0, true)
 												withAnimation(.bouncy) {
@@ -83,14 +89,15 @@ struct ProximityDetectorView: View {
 										} label: {
 												Text("Rest Count").bold()
 										}.softButtonStyle(RoundedRectangle(cornerRadius: cornerRadius))
-												.padding()
+//												.padding()
 
 										Button(action: viewModel.resetTimer) {
 												Text("Reset Timer").bold()
 										}.softButtonStyle(RoundedRectangle(cornerRadius: cornerRadius))
-												.padding()
+//												.padding()
+										Spacer()
 								}
-
+								Spacer()
 								MTSlide(
 										isDisabled: !viewModel.isTimerRunning && viewModel.objectCount == 0,
 										thumbnailTopBottomPadding: 3,
@@ -127,26 +134,42 @@ struct ProximityDetectorView: View {
 						)
 						.sheet(isPresented: $showModal) {
 								ProximitySettings()
-						}.presentationDetents([.medium])
+										.presentationDetents([.medium])
+						}
 				}
 				.onAppear {
-						updateViewModelSettings()
+						//						updateViewModelSettings()
 						viewModel.startMonitoring()
 				}
 				.onDisappear {
 						viewModel.stopMonitoring()
 				}
-				.onChange(of: isHapticFeedbackEnabled) { updateViewModelSettings() }
-				.onChange(of: isVoiceFeedbackEnabled) { updateViewModelSettings() }
-				.onChange(of: selectedVoiceType) { updateViewModelSettings() }
-				.onChange(of: voiceSpeed) { updateViewModelSettings() }
+				.onChange(of: pushupDailyGoal) { _, newValue in
+						Task {
+								if let dataHandler = await createDataHandler() {
+										try? await viewModel.updateDailyGoal(newValue, dataHandler: dataHandler)
+								}
+						}
+				}
+				.onChange(of: isHapticFeedbackEnabled) { _, _ in
+						updateViewModelSettings()
+				}
+				.onChange(of: isVoiceFeedbackEnabled) { _, _ in
+						updateViewModelSettings()
+				}
+				.onChange(of: selectedVoiceType) { _, _ in
+						updateViewModelSettings()
+				}
+				.onChange(of: voiceSpeed) { _, _ in
+						updateViewModelSettings()
+				}
 		}
 
 		private var activityProgress: CGFloat {
-				CGFloat(viewModel.objectCount) / CGFloat(pushupDailyGoal)
+				CGFloat(viewModel.dailyTotal + viewModel.objectCount) / CGFloat(viewModel.dailyGoal)
 		}
 
-		private func updateViewModelSettings() {
+		func updateViewModelSettings() {
 				viewModel.updateSettings(
 						isHapticFeedbackEnabled: isHapticFeedbackEnabled,
 						isVoiceFeedbackEnabled: isVoiceFeedbackEnabled,
@@ -161,9 +184,15 @@ struct ProximityDetectorView: View {
 class ProximityDetectorViewModel: ObservableObject {
 		@Published var proximityState = false
 		@Published var objectCount = 0
+		@Published var dailyTotal = 0
+		@Published var dailyGoal: Int
 		@Published var formattedTime = "00:00"
 		@Published var isTimerRunning = false
 		@Published var elapsedTime: TimeInterval = 0
+
+		init(dailyGoal: Int = UserDefaults.standard.integer(forKey: "Push-Up")) {
+				self.dailyGoal = dailyGoal
+		}
 
 		private var isHapticFeedbackEnabled = true
 		private var isVoiceFeedbackEnabled = true
@@ -172,6 +201,23 @@ class ProximityDetectorViewModel: ObservableObject {
 
 		private let device = UIDevice.current
 		private var timer: Timer?
+
+		func updateDailyGoal(_ goal: Int, dataHandler: DataHandler) async throws {
+				try await dataHandler.updateOrCreateDailyTotal(date: Date(), pushupsGoal: goal)
+		}
+
+		func loadDailyTotal(dataHandler: DataHandler) async {
+				do {
+						if let total = try await dataHandler.getDailyTotal(for: Date()) {
+								await MainActor.run {
+										self.dailyTotal = total.pushups
+										self.dailyGoal = total.pushupsGoal
+								}
+						}
+				} catch {
+						print("Error loading daily total: \(error)")
+				}
+		}
 
 		func updateSettings(
 				isHapticFeedbackEnabled: Bool,
@@ -204,22 +250,22 @@ class ProximityDetectorViewModel: ObservableObject {
 		func updateCount(_ increment: Int?, _ decrement: Int?, _ reset: Bool?) {
 				DispatchQueue.main.async {
 						var shouldAnnounce = false
-						
+
 						if let increment {
 								self.objectCount += increment
 								shouldAnnounce = true
 						}
-						
+
 						if let decrement, self.objectCount - decrement >= 0 {
 								self.objectCount -= decrement
 								shouldAnnounce = true
 						}
-						
+
 						if let reset, reset {
 								self.objectCount = 0
-								shouldAnnounce = true
+								shouldAnnounce = false
 						}
-						
+
 						if shouldAnnounce {
 								self.announceCount()
 						}
@@ -245,9 +291,12 @@ class ProximityDetectorViewModel: ObservableObject {
 		}
 
 		func saveWorkout(dataHandler: DataHandler) async throws {
-				try await dataHandler.newWorkout(date: Date(), duration: elapsedTime, count: objectCount, type: "pushup")
+				let newTotal = dailyTotal + objectCount
+				try await dataHandler.updateOrCreateDailyTotal(date: Date(), pushups: objectCount, pushupsGoal: dailyGoal)
 				print("Workout saved successfully")
 				await MainActor.run {
+						self.dailyTotal = newTotal
+						self.objectCount = 0
 						self.resetTimer()
 						self.updateCount(0, 0, true)
 				}
