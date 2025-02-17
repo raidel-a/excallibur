@@ -1,33 +1,22 @@
-//  Created by Raidel Almeida on 6/28/24.
 //
-//  excalliburApp.swift
-//  excallibur
-//
+// excalliburApp.swift
 //
 
-import SwiftUI
+import DataProvider
 import SwiftData
+import SwiftUI
 
 @main
 struct excalliburApp: App {
-    @StateObject private var dataSource = WorkoutDataSource.shared
+		@AppStorage("isDarkMode") private var isDarkMode = false
+		let dataProvider = DataProvider.shared
 
-    
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-                .environmentObject(dataSource)
-        }
-        .modelContainer(for: WorkoutData.self) 
-//        { result in
-//            switch result {
-//                case .success(let container):
-//                    print("Successfully created ModelContainer")
-//                case .failure(let error):
-//                    print("Failed to create ModelContainer: \(error)")
-//                        // Handle the error, possibly by resetting the store
-//                    ModelContainer.resetStore(for: WorkoutData.self)
-//            }
-//        }
-    }
+		var body: some Scene {
+				WindowGroup {
+						TabBarView()
+								.preferredColorScheme(isDarkMode ? .dark : .light)
+								.environment(\.createDataHandler, dataProvider.dataHandlerCreator())
+				}
+				.modelContainer(dataProvider.sharedModelContainer)
+		}
 }

@@ -9,13 +9,22 @@
 /* Begin PBXBuildFile section */
 		310276A82C32131100F4207C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310276A72C32130200F4207C /* SettingsView.swift */; };
 		310276AA2C321A8500F4207C /* ElevationChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310276A92C321A7800F4207C /* ElevationChangeView.swift */; };
-		310276AC2C321E3000F4207C /* TrackerSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310276AB2C321E2800F4207C /* TrackerSelectionView.swift */; };
+		310276AC2C321E3000F4207C /* ExerciseSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310276AB2C321E2800F4207C /* ExerciseSelectionView.swift */; };
 		310276B02C321EF800F4207C /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310276AF2C321EF200F4207C /* StatsView.swift */; };
-		312752242C40746900DC26FE /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312752232C40745F00DC26FE /* DataModel.swift */; };
-		312752292C40CDDC00DC26FE /* WorkoutDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312752282C40CDCA00DC26FE /* WorkoutDataSource.swift */; };
 		3127522B2C42D37700DC26FE /* seed.json in Resources */ = {isa = PBXBuildFile; fileRef = 3127522A2C42D36B00DC26FE /* seed.json */; };
+		31323ABD2C52D49D00F4E677 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31323ABC2C52D49D00F4E677 /* Preview Assets.xcassets */; };
+		31323AC32C52D62C00F4E677 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3139F2462C52C98C006BCC99 /* WidgetKit.framework */; };
+		31323AC42C52D62C00F4E677 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3139F2482C52C98C006BCC99 /* SwiftUI.framework */; };
+		31323AC72C52D62C00F4E677 /* TrackerWidget_ExtensionBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31323AC62C52D62C00F4E677 /* TrackerWidget_ExtensionBundle.swift */; };
+		31323AC92C52D62C00F4E677 /* TrackerWidget_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31323AC82C52D62C00F4E677 /* TrackerWidget_Extension.swift */; };
+		31323ACB2C52D62D00F4E677 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31323ACA2C52D62D00F4E677 /* Assets.xcassets */; };
+		31323ACF2C52D62D00F4E677 /* TrackerWidget-ExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 31323AC22C52D62B00F4E677 /* TrackerWidget-ExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		31323AD62C52F3B200F4E677 /* ProgressView-Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31323AD52C52F3B200F4E677 /* ProgressView-Custom.swift */; };
+		314178992C59C9E300EAA51D /* DataProvider in Resources */ = {isa = PBXBuildFile; fileRef = 314178932C5700DC00EAA51D /* DataProvider */; };
+		3141789C2C59EC6500EAA51D /* DataProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 3141789B2C59EC6500EAA51D /* DataProvider */; };
+		3141789E2C59F54100EAA51D /* SpeechManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3141789D2C59F54100EAA51D /* SpeechManager.swift */; };
 		31AEA6382C4F203100100E5A /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AEA6372C4F203100100E5A /* Slider.swift */; };
-		31BC94262C50AB3B0089DEDD /* CircularProg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BC94252C50AB3B0089DEDD /* CircularProg.swift */; };
+		31BC94262C50AB3B0089DEDD /* NeumorphExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BC94252C50AB3B0089DEDD /* NeumorphExamples.swift */; };
 		31CF0A2B2C51D82700E9A846 /* View+InverseMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CF0A292C51D82700E9A846 /* View+InverseMask.swift */; };
 		31CF0A2C2C51D82700E9A846 /* SoftInnerShadowViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CF0A272C51D82700E9A846 /* SoftInnerShadowViewModifier.swift */; };
 		31CF0A2D2C51D82700E9A846 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CF0A232C51D82700E9A846 /* ColorExtension.swift */; };
@@ -24,16 +33,19 @@
 		31CF0A302C51D82700E9A846 /* NeumorphicKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CF0A242C51D82700E9A846 /* NeumorphicKit.swift */; };
 		31CF0A312C51D82700E9A846 /* SoftButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CF0A252C51D82700E9A846 /* SoftButtonStyle.swift */; };
 		31EBB2662C2E875B00E4DA30 /* excalliburApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBB2652C2E875B00E4DA30 /* excalliburApp.swift */; };
-		31EBB2682C2E875B00E4DA30 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBB2672C2E875B00E4DA30 /* ContentView.swift */; };
+		31EBB2682C2E875B00E4DA30 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBB2672C2E875B00E4DA30 /* TabBarView.swift */; };
 		31EBB26A2C2E875C00E4DA30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31EBB2692C2E875C00E4DA30 /* Assets.xcassets */; };
-		31EBB26D2C2E875C00E4DA30 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31EBB26C2C2E875C00E4DA30 /* Preview Assets.xcassets */; };
-		31EBB2772C2E875D00E4DA30 /* excalliburTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBB2762C2E875D00E4DA30 /* excalliburTests.swift */; };
-		31EBB2812C2E875D00E4DA30 /* excalliburUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBB2802C2E875D00E4DA30 /* excalliburUITests.swift */; };
-		31EBB2832C2E875D00E4DA30 /* excalliburUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBB2822C2E875D00E4DA30 /* excalliburUITestsLaunchTests.swift */; };
 		31EBB2902C2E928C00E4DA30 /* ProximityCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBB28F2C2E927800E4DA30 /* ProximityCounterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		31323ACD2C52D62D00F4E677 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 31EBB25A2C2E875A00E4DA30 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 31323AC12C52D62B00F4E677;
+			remoteInfo = "TrackerWidget-ExtensionExtension";
+		};
 		31EBB2732C2E875D00E4DA30 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 31EBB25A2C2E875A00E4DA30 /* Project object */;
@@ -50,17 +62,40 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3139F2552C52C98D006BCC99 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				31323ACF2C52D62D00F4E677 /* TrackerWidget-ExtensionExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		310276A72C32130200F4207C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		310276A92C321A7800F4207C /* ElevationChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElevationChangeView.swift; sourceTree = "<group>"; };
-		310276AB2C321E2800F4207C /* TrackerSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerSelectionView.swift; sourceTree = "<group>"; };
+		310276AB2C321E2800F4207C /* ExerciseSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSelectionView.swift; sourceTree = "<group>"; };
 		310276AF2C321EF200F4207C /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		312752222C3F301200DC26FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		312752232C40745F00DC26FE /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; usesTabs = 0; };
-		312752282C40CDCA00DC26FE /* WorkoutDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDataSource.swift; sourceTree = "<group>"; };
 		3127522A2C42D36B00DC26FE /* seed.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = seed.json; sourceTree = "<group>"; };
+		31323ABC2C52D49D00F4E677 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		31323AC22C52D62B00F4E677 /* TrackerWidget-ExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "TrackerWidget-ExtensionExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		31323AC62C52D62C00F4E677 /* TrackerWidget_ExtensionBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerWidget_ExtensionBundle.swift; sourceTree = "<group>"; };
+		31323AC82C52D62C00F4E677 /* TrackerWidget_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerWidget_Extension.swift; sourceTree = "<group>"; };
+		31323ACA2C52D62D00F4E677 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		31323ACC2C52D62D00F4E677 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		31323AD52C52F3B200F4E677 /* ProgressView-Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProgressView-Custom.swift"; sourceTree = "<group>"; };
+		3139F2462C52C98C006BCC99 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		3139F2482C52C98C006BCC99 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		314178932C5700DC00EAA51D /* DataProvider */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DataProvider; sourceTree = "<group>"; };
+		3141789D2C59F54100EAA51D /* SpeechManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechManager.swift; sourceTree = "<group>"; };
 		31AEA6372C4F203100100E5A /* Slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
-		31BC94252C50AB3B0089DEDD /* CircularProg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProg.swift; sourceTree = "<group>"; };
+		31BC94252C50AB3B0089DEDD /* NeumorphExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphExamples.swift; sourceTree = "<group>"; };
 		31CF0A232C51D82700E9A846 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		31CF0A242C51D82700E9A846 /* NeumorphicKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphicKit.swift; sourceTree = "<group>"; };
 		31CF0A252C51D82700E9A846 /* SoftButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftButtonStyle.swift; sourceTree = "<group>"; };
@@ -70,22 +105,28 @@
 		31CF0A292C51D82700E9A846 /* View+InverseMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+InverseMask.swift"; sourceTree = "<group>"; };
 		31EBB2622C2E875B00E4DA30 /* excallibur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = excallibur.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31EBB2652C2E875B00E4DA30 /* excalliburApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = excalliburApp.swift; sourceTree = "<group>"; };
-		31EBB2672C2E875B00E4DA30 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		31EBB2672C2E875B00E4DA30 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		31EBB2692C2E875C00E4DA30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		31EBB26C2C2E875C00E4DA30 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		31EBB2722C2E875D00E4DA30 /* excalliburTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = excalliburTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		31EBB2762C2E875D00E4DA30 /* excalliburTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = excalliburTests.swift; sourceTree = "<group>"; };
 		31EBB27C2C2E875D00E4DA30 /* excalliburUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = excalliburUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		31EBB2802C2E875D00E4DA30 /* excalliburUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = excalliburUITests.swift; sourceTree = "<group>"; };
-		31EBB2822C2E875D00E4DA30 /* excalliburUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = excalliburUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		31EBB28F2C2E927800E4DA30 /* ProximityCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProximityCounterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		31323ABF2C52D62B00F4E677 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31323AC42C52D62C00F4E677 /* SwiftUI.framework in Frameworks */,
+				31323AC32C52D62C00F4E677 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		31EBB25F2C2E875B00E4DA30 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3141789C2C59EC6500EAA51D /* DataProvider in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +147,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		31323ABA2C52D47C00F4E677 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				31323ABC2C52D49D00F4E677 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		31323AC52C52D62C00F4E677 /* TrackerWidget-Extension */ = {
+			isa = PBXGroup;
+			children = (
+				31323ACC2C52D62D00F4E677 /* Info.plist */,
+				31323AC82C52D62C00F4E677 /* TrackerWidget_Extension.swift */,
+				31323AC62C52D62C00F4E677 /* TrackerWidget_ExtensionBundle.swift */,
+				31323ACA2C52D62D00F4E677 /* Assets.xcassets */,
+			);
+			path = "TrackerWidget-Extension";
+			sourceTree = "<group>";
+		};
+		3139F2452C52C98C006BCC99 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3139F2462C52C98C006BCC99 /* WidgetKit.framework */,
+				3139F2482C52C98C006BCC99 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		314178942C59872100EAA51D /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				31BC94252C50AB3B0089DEDD /* NeumorphExamples.swift */,
+				31AEA6372C4F203100100E5A /* Slider.swift */,
+				31323AD52C52F3B200F4E677 /* ProgressView-Custom.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		31CF0A2A2C51D82700E9A846 /* Neumorphic */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,11 +203,13 @@
 			isa = PBXGroup;
 			children = (
 				31EBB2642C2E875B00E4DA30 /* excallibur */,
-				31EBB2752C2E875D00E4DA30 /* excalliburTests */,
-				31EBB27F2C2E875D00E4DA30 /* excalliburUITests */,
+				31323AC52C52D62C00F4E677 /* TrackerWidget-Extension */,
+				3139F2452C52C98C006BCC99 /* Frameworks */,
 				31EBB2632C2E875B00E4DA30 /* Products */,
 			);
 			sourceTree = "<group>";
+			tabWidth = 1;
+			usesTabs = 1;
 		};
 		31EBB2632C2E875B00E4DA30 /* Products */ = {
 			isa = PBXGroup;
@@ -136,6 +217,7 @@
 				31EBB2622C2E875B00E4DA30 /* excallibur.app */,
 				31EBB2722C2E875D00E4DA30 /* excalliburTests.xctest */,
 				31EBB27C2C2E875D00E4DA30 /* excalliburUITests.xctest */,
+				31323AC22C52D62B00F4E677 /* TrackerWidget-ExtensionExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -143,54 +225,47 @@
 		31EBB2642C2E875B00E4DA30 /* excallibur */ = {
 			isa = PBXGroup;
 			children = (
+				314178932C5700DC00EAA51D /* DataProvider */,
 				3127522A2C42D36B00DC26FE /* seed.json */,
 				312752222C3F301200DC26FE /* Info.plist */,
-				31BC94252C50AB3B0089DEDD /* CircularProg.swift */,
-				31EBB2672C2E875B00E4DA30 /* ContentView.swift */,
-				312752232C40745F00DC26FE /* DataModel.swift */,
 				310276A92C321A7800F4207C /* ElevationChangeView.swift */,
 				31EBB2652C2E875B00E4DA30 /* excalliburApp.swift */,
 				31EBB28F2C2E927800E4DA30 /* ProximityCounterView.swift */,
 				310276A72C32130200F4207C /* SettingsView.swift */,
-				31AEA6372C4F203100100E5A /* Slider.swift */,
+				3141789D2C59F54100EAA51D /* SpeechManager.swift */,
 				310276AF2C321EF200F4207C /* StatsView.swift */,
-				310276AB2C321E2800F4207C /* TrackerSelectionView.swift */,
-				312752282C40CDCA00DC26FE /* WorkoutDataSource.swift */,
+				31EBB2672C2E875B00E4DA30 /* TabBarView.swift */,
+				310276AB2C321E2800F4207C /* ExerciseSelectionView.swift */,
 				31EBB2692C2E875C00E4DA30 /* Assets.xcassets */,
+				314178942C59872100EAA51D /* Components */,
 				31CF0A2A2C51D82700E9A846 /* Neumorphic */,
-				31EBB26B2C2E875C00E4DA30 /* Preview Content */,
+				31323ABA2C52D47C00F4E677 /* Preview Content */,
 			);
 			path = excallibur;
-			sourceTree = "<group>";
-		};
-		31EBB26B2C2E875C00E4DA30 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				31EBB26C2C2E875C00E4DA30 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		31EBB2752C2E875D00E4DA30 /* excalliburTests */ = {
-			isa = PBXGroup;
-			children = (
-				31EBB2762C2E875D00E4DA30 /* excalliburTests.swift */,
-			);
-			path = excalliburTests;
-			sourceTree = "<group>";
-		};
-		31EBB27F2C2E875D00E4DA30 /* excalliburUITests */ = {
-			isa = PBXGroup;
-			children = (
-				31EBB2802C2E875D00E4DA30 /* excalliburUITests.swift */,
-				31EBB2822C2E875D00E4DA30 /* excalliburUITestsLaunchTests.swift */,
-			);
-			path = excalliburUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		31323AC12C52D62B00F4E677 /* TrackerWidget-ExtensionExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 31323AD02C52D62D00F4E677 /* Build configuration list for PBXNativeTarget "TrackerWidget-ExtensionExtension" */;
+			buildPhases = (
+				31323ABE2C52D62B00F4E677 /* Sources */,
+				31323ABF2C52D62B00F4E677 /* Frameworks */,
+				31323AC02C52D62B00F4E677 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TrackerWidget-ExtensionExtension";
+			packageProductDependencies = (
+			);
+			productName = "TrackerWidget-ExtensionExtension";
+			productReference = 31323AC22C52D62B00F4E677 /* TrackerWidget-ExtensionExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		31EBB2612C2E875B00E4DA30 /* excallibur */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 31EBB2862C2E875D00E4DA30 /* Build configuration list for PBXNativeTarget "excallibur" */;
@@ -198,13 +273,16 @@
 				31EBB25E2C2E875B00E4DA30 /* Sources */,
 				31EBB25F2C2E875B00E4DA30 /* Frameworks */,
 				31EBB2602C2E875B00E4DA30 /* Resources */,
+				3139F2552C52C98D006BCC99 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				31323ACE2C52D62D00F4E677 /* PBXTargetDependency */,
 			);
 			name = excallibur;
 			packageProductDependencies = (
+				3141789B2C59EC6500EAA51D /* DataProvider */,
 			);
 			productName = excallibur;
 			productReference = 31EBB2622C2E875B00E4DA30 /* excallibur.app */;
@@ -256,6 +334,9 @@
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
+					31323AC12C52D62B00F4E677 = {
+						CreatedOnToolsVersion = 16.0;
+					};
 					31EBB2612C2E875B00E4DA30 = {
 						CreatedOnToolsVersion = 16.0;
 					};
@@ -279,6 +360,7 @@
 			);
 			mainGroup = 31EBB2592C2E875A00E4DA30;
 			packageReferences = (
+				3141789A2C59EC6500EAA51D /* XCLocalSwiftPackageReference "excallibur/DataProvider" */,
 			);
 			productRefGroup = 31EBB2632C2E875B00E4DA30 /* Products */;
 			projectDirPath = "";
@@ -287,16 +369,26 @@
 				31EBB2612C2E875B00E4DA30 /* excallibur */,
 				31EBB2712C2E875D00E4DA30 /* excalliburTests */,
 				31EBB27B2C2E875D00E4DA30 /* excalliburUITests */,
+				31323AC12C52D62B00F4E677 /* TrackerWidget-ExtensionExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		31323AC02C52D62B00F4E677 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31323ACB2C52D62D00F4E677 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		31EBB2602C2E875B00E4DA30 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31EBB26D2C2E875C00E4DA30 /* Preview Assets.xcassets in Resources */,
+				31323ABD2C52D49D00F4E677 /* Preview Assets.xcassets in Resources */,
+				314178992C59C9E300EAA51D /* DataProvider in Resources */,
 				3127522B2C42D37700DC26FE /* seed.json in Resources */,
 				31EBB26A2C2E875C00E4DA30 /* Assets.xcassets in Resources */,
 			);
@@ -319,16 +411,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		31323ABE2C52D62B00F4E677 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31323AC92C52D62C00F4E677 /* TrackerWidget_Extension.swift in Sources */,
+				31323AC72C52D62C00F4E677 /* TrackerWidget_ExtensionBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		31EBB25E2C2E875B00E4DA30 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				31EBB2902C2E928C00E4DA30 /* ProximityCounterView.swift in Sources */,
-				312752242C40746900DC26FE /* DataModel.swift in Sources */,
 				310276A82C32131100F4207C /* SettingsView.swift in Sources */,
-				31EBB2682C2E875B00E4DA30 /* ContentView.swift in Sources */,
+				31EBB2682C2E875B00E4DA30 /* TabBarView.swift in Sources */,
 				31AEA6382C4F203100100E5A /* Slider.swift in Sources */,
-				31BC94262C50AB3B0089DEDD /* CircularProg.swift in Sources */,
+				31BC94262C50AB3B0089DEDD /* NeumorphExamples.swift in Sources */,
 				310276AA2C321A8500F4207C /* ElevationChangeView.swift in Sources */,
 				31CF0A2B2C51D82700E9A846 /* View+InverseMask.swift in Sources */,
 				31CF0A2C2C51D82700E9A846 /* SoftInnerShadowViewModifier.swift in Sources */,
@@ -337,10 +437,11 @@
 				31CF0A2F2C51D82700E9A846 /* SoftDynamicToggleStyle.swift in Sources */,
 				31CF0A302C51D82700E9A846 /* NeumorphicKit.swift in Sources */,
 				31CF0A312C51D82700E9A846 /* SoftButtonStyle.swift in Sources */,
-				310276AC2C321E3000F4207C /* TrackerSelectionView.swift in Sources */,
-				312752292C40CDDC00DC26FE /* WorkoutDataSource.swift in Sources */,
+				3141789E2C59F54100EAA51D /* SpeechManager.swift in Sources */,
+				310276AC2C321E3000F4207C /* ExerciseSelectionView.swift in Sources */,
 				310276B02C321EF800F4207C /* StatsView.swift in Sources */,
 				31EBB2662C2E875B00E4DA30 /* excalliburApp.swift in Sources */,
+				31323AD62C52F3B200F4E677 /* ProgressView-Custom.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,7 +449,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31EBB2772C2E875D00E4DA30 /* excalliburTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,14 +456,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31EBB2812C2E875D00E4DA30 /* excalliburUITests.swift in Sources */,
-				31EBB2832C2E875D00E4DA30 /* excalliburUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		31323ACE2C52D62D00F4E677 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 31323AC12C52D62B00F4E677 /* TrackerWidget-ExtensionExtension */;
+			targetProxy = 31323ACD2C52D62D00F4E677 /* PBXContainerItemProxy */;
+		};
 		31EBB2742C2E875D00E4DA30 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 31EBB2612C2E875B00E4DA30 /* excallibur */;
@@ -377,6 +480,62 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		31323AD12C52D62D00F4E677 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "TrackerWidget-ExtensionExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = MK26S2J3QC;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TrackerWidget-Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "TrackerWidget-Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.2;
+				PRODUCT_BUNDLE_IDENTIFIER = "rairai.excallibur.TrackerWidget-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		31323AD22C52D62D00F4E677 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "TrackerWidget-ExtensionExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = MK26S2J3QC;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TrackerWidget-Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "TrackerWidget-Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.2;
+				PRODUCT_BUNDLE_IDENTIFIER = "rairai.excallibur.TrackerWidget-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		31EBB2842C2E875D00E4DA30 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -510,17 +669,21 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = excallibur/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSMotionUsageDescription = testest;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = rairai.excallibur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -543,17 +706,21 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = excallibur/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSMotionUsageDescription = testest;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = rairai.excallibur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -637,6 +804,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		31323AD02C52D62D00F4E677 /* Build configuration list for PBXNativeTarget "TrackerWidget-ExtensionExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				31323AD12C52D62D00F4E677 /* Debug */,
+				31323AD22C52D62D00F4E677 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		31EBB25D2C2E875A00E4DA30 /* Build configuration list for PBXProject "excallibur" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -674,6 +850,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		3141789A2C59EC6500EAA51D /* XCLocalSwiftPackageReference "excallibur/DataProvider" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = excallibur/DataProvider;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3141789B2C59EC6500EAA51D /* DataProvider */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DataProvider;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 31EBB25A2C2E875A00E4DA30 /* Project object */;
 }

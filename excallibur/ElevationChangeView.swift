@@ -1,13 +1,11 @@
-//  Created by Raidel Almeida on 6/30/24.
 //
 //  ElevationChangeView.swift
-//  excallibur
-//
 //
 
 import AVFoundation
 import Combine
 import CoreMotion
+import DataProvider
 import SwiftData
 import SwiftUI
 
@@ -255,7 +253,7 @@ struct ElevationChangeView: View {
 	@Environment(\.modelContext) private var modelContext
 
 	private func saveWorkout() {
-		let workout = WorkoutData(date: Date(), duration: motionManager.workoutDuration, count: motionManager.squatCount, type: "squat")
+		let workout = Workout(date: Date(), duration: motionManager.workoutDuration, count: motionManager.squatCount, type: "squat")
 		modelContext.insert(workout)
 		do {
 			try modelContext.save()
