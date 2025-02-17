@@ -59,14 +59,14 @@ struct ItemView: View {
 												.resizable()
 												.scaledToFit()
 												.padding(15)
-												.frame(width: 125, height: 100)
+												.frame(width: 110, height: 100)
 												.rotationEffect(exercise.icon == "figure.pushup" ? .degrees(75) : .degrees(0)) // temp fix for pushup icon
 								}
 												.foregroundStyle(Color(Color.Neumorphic.main))
 												.background(Color(red: exercise.red, green: exercise.green, blue: exercise.blue))
 												.cornerRadius(16)
 //												.shadow(color: .accentColor, radius: 1.0)
-												.softInnerShadow(RoundedRectangle(cornerRadius: 16), spread: 0.05, radius: 5.0)
+												.softInnerShadow(RoundedRectangle(cornerRadius: 16), spread: 0.05, radius: 1.5)
 
 										// Name
 										Text(exercise.name)
