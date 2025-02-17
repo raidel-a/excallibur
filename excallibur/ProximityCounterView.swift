@@ -23,18 +23,18 @@ struct ProximityDetectorView: View {
 		@AppStorage("voiceSpeed") private var voiceSpeed: Double = 0.6
 
 		let cornerRadius: CGFloat = 20
-
+		
 		var body: some View {
 				let mainColor = Color.Neumorphic.main
 				let secondaryColor = Color.Neumorphic.secondary
 				ZStack {
 						mainColor.edgesIgnoringSafeArea(.all)
 						VStack {
-								Image("figure.pushup")
-										.resizable()
-										.scaledToFit()
-										.frame(width: 50, height: 50)
-										.rotationEffect(Angle(degrees: 75))
+//								Image("figure.pushup")
+//										.resizable()
+//										.scaledToFit()
+//										.frame(width: 50, height: 50)
+//										.rotationEffect(Angle(degrees: 75))
 
 								ZStack {
 										ProgressView(value: Double(viewModel.dailyTotal + viewModel.objectCount), total: Double(viewModel.dailyGoal))
@@ -42,6 +42,7 @@ struct ProximityDetectorView: View {
 												.animation(.linear, value: activityProgress)
 												.frame(width: 300, height: 300)
 												.padding()
+												.drawingGroup()
 
 										HStack {
 												Button(action: {
@@ -97,7 +98,7 @@ struct ProximityDetectorView: View {
 //												.padding()
 										Spacer()
 								}
-								Spacer()
+//								Spacer()
 								MTSlide(
 										isDisabled: !viewModel.isTimerRunning && viewModel.objectCount == 0,
 										thumbnailTopBottomPadding: 3,
@@ -221,7 +222,7 @@ class ProximityDetectorViewModel: ObservableObject {
 
 		func updateSettings(
 				isHapticFeedbackEnabled: Bool,
-				isVoiceFeedbackEnabled: Bool,
+				isVoiceFeedbackEnabled: Bool = false,
 				selectedVoiceType: String,
 				voiceSpeed: Double
 		) {
@@ -292,7 +293,15 @@ class ProximityDetectorViewModel: ObservableObject {
 
 		func saveWorkout(dataHandler: DataHandler) async throws {
 				let newTotal = dailyTotal + objectCount
-				try await dataHandler.updateOrCreateDailyTotal(date: Date(), pushups: objectCount, pushupsGoal: dailyGoal)
+				// Save the workout
+				try await dataHandler.newWorkout(
+						date: Date(),
+						duration: elapsedTime,
+						count: objectCount,
+						type: "pushup"
+				)
+				// Update daily total
+				try await dataHandler.updateOrCreateDailyTotal(date: Date(), pushups: newTotal, pushupsGoal: dailyGoal)
 				print("Workout saved successfully")
 				await MainActor.run {
 						self.dailyTotal = newTotal
@@ -364,7 +373,7 @@ struct ProximitySettings: View {
 						}
 				}
 		}
-}
+}		
 
 // MARK: - ProximityDetectorView_Previews
 
@@ -373,4 +382,4 @@ struct ProximityDetectorView_Previews: PreviewProvider {
 				ProximityDetectorView()
 						.environment(\.colorScheme, .dark)
 		}
-}
+} 
