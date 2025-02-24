@@ -54,27 +54,34 @@ struct ItemView: View {
 				}) {
 						VStack(alignment: .center, spacing: 6) {
 										// Icon
-								ZStack {
-										Image(exercise.icon)
-												.resizable()
-												.scaledToFit()
-												.padding(15)
-												.frame(width: 110, height: 100)
-												.rotationEffect(exercise.icon == "figure.pushup" ? .degrees(75) : .degrees(0)) // temp fix for pushup icon
-								}
+										ZStack {
+														Image(exercise.icon)
+																		.resizable()
+																		.scaledToFit()
+																		.padding(15)
+																		.frame(width: 110, height: 100)
+																		.rotationEffect(exercise.icon == "figure.pushup" ? .degrees(75) : .degrees(0)) // temp fix for pushup icon
+																		.offset(
+																				x: exercise.icon == "figure.pushup" ? -4 : 0,
+																				y: exercise.icon == "figure.pushup" ? 5 : 0
+																		)
+																		.offset(x: exercise.icon == "figure.squat" ? 3 : 0, y: exercise.icon == "figure.squat" ? 7 : 0)
+										}
 												.foregroundStyle(Color(Color.Neumorphic.main))
 												.background(Color(red: exercise.red, green: exercise.green, blue: exercise.blue))
 												.cornerRadius(16)
-//												.shadow(color: .accentColor, radius: 1.0)
-												.softInnerShadow(RoundedRectangle(cornerRadius: 16), spread: 0.05, radius: 1.5)
+												.shadow(color: .accentColor, radius: 0.5)
+												.softOuterShadow()
 
+										Spacer(minLength: 1)
 										// Name
 										Text(exercise.name)
 												.font(.title3)
 												.fontWeight(.semibold)
 												.shadow(color: .accentColor, radius: 0.8)
+										
 								}
-						.padding(.all,6)
+						.padding(.all,3)
 				}
 				.softButtonStyle(RoundedRectangle(cornerRadius: 12))
 		}
