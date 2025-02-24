@@ -12,7 +12,6 @@
 		310276AC2C321E3000F4207C /* ExerciseSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310276AB2C321E2800F4207C /* ExerciseSelectionView.swift */; };
 		310276B02C321EF800F4207C /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310276AF2C321EF200F4207C /* StatsView.swift */; };
 		3127522B2C42D37700DC26FE /* seed.json in Resources */ = {isa = PBXBuildFile; fileRef = 3127522A2C42D36B00DC26FE /* seed.json */; };
-		31323ABD2C52D49D00F4E677 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31323ABC2C52D49D00F4E677 /* Preview Assets.xcassets */; };
 		31323AC32C52D62C00F4E677 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3139F2462C52C98C006BCC99 /* WidgetKit.framework */; };
 		31323AC42C52D62C00F4E677 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3139F2482C52C98C006BCC99 /* SwiftUI.framework */; };
 		31323AC72C52D62C00F4E677 /* TrackerWidget_ExtensionBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31323AC62C52D62C00F4E677 /* TrackerWidget_ExtensionBundle.swift */; };
@@ -25,6 +24,9 @@
 		3141789E2C59F54100EAA51D /* SpeechManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3141789D2C59F54100EAA51D /* SpeechManager.swift */; };
 		31AEA6382C4F203100100E5A /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AEA6372C4F203100100E5A /* Slider.swift */; };
 		31BC94262C50AB3B0089DEDD /* NeumorphExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BC94252C50AB3B0089DEDD /* NeumorphExamples.swift */; };
+		31BF04692D6CC25700A704E7 /* SwipeableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BF04682D6CC25700A704E7 /* SwipeableRow.swift */; };
+		31BF046B2D6CDEBC00A704E7 /* Neumorphic in Sources */ = {isa = PBXBuildFile; fileRef = 31BF04662D6CC23500A704E7 /* Neumorphic */; };
+		31BF046D2D6CDF1F00A704E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31EBB2692C2E875C00E4DA30 /* Assets.xcassets */; };
 		31CF0A2B2C51D82700E9A846 /* View+InverseMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CF0A292C51D82700E9A846 /* View+InverseMask.swift */; };
 		31CF0A2C2C51D82700E9A846 /* SoftInnerShadowViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CF0A272C51D82700E9A846 /* SoftInnerShadowViewModifier.swift */; };
 		31CF0A2D2C51D82700E9A846 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CF0A232C51D82700E9A846 /* ColorExtension.swift */; };
@@ -34,7 +36,6 @@
 		31CF0A312C51D82700E9A846 /* SoftButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CF0A252C51D82700E9A846 /* SoftButtonStyle.swift */; };
 		31EBB2662C2E875B00E4DA30 /* excalliburApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBB2652C2E875B00E4DA30 /* excalliburApp.swift */; };
 		31EBB2682C2E875B00E4DA30 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBB2672C2E875B00E4DA30 /* TabBarView.swift */; };
-		31EBB26A2C2E875C00E4DA30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31EBB2692C2E875C00E4DA30 /* Assets.xcassets */; };
 		31EBB2902C2E928C00E4DA30 /* ProximityCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBB28F2C2E927800E4DA30 /* ProximityCounterView.swift */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +97,8 @@
 		3141789D2C59F54100EAA51D /* SpeechManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechManager.swift; sourceTree = "<group>"; };
 		31AEA6372C4F203100100E5A /* Slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
 		31BC94252C50AB3B0089DEDD /* NeumorphExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphExamples.swift; sourceTree = "<group>"; };
+		31BF04662D6CC23500A704E7 /* Neumorphic */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Neumorphic; path = excallibur/Neumorphic; sourceTree = "<group>"; };
+		31BF04682D6CC25700A704E7 /* SwipeableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableRow.swift; sourceTree = "<group>"; };
 		31CF0A232C51D82700E9A846 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		31CF0A242C51D82700E9A846 /* NeumorphicKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphicKit.swift; sourceTree = "<group>"; };
 		31CF0A252C51D82700E9A846 /* SoftButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftButtonStyle.swift; sourceTree = "<group>"; };
@@ -195,6 +198,7 @@
 				31CF0A272C51D82700E9A846 /* SoftInnerShadowViewModifier.swift */,
 				31CF0A282C51D82700E9A846 /* SoftOuterShadowViewModifier.swift */,
 				31CF0A292C51D82700E9A846 /* View+InverseMask.swift */,
+				31BF04682D6CC25700A704E7 /* SwipeableRow.swift */,
 			);
 			path = Neumorphic;
 			sourceTree = "<group>";
@@ -202,6 +206,7 @@
 		31EBB2592C2E875A00E4DA30 = {
 			isa = PBXGroup;
 			children = (
+				31BF04662D6CC23500A704E7 /* Neumorphic */,
 				31EBB2642C2E875B00E4DA30 /* excallibur */,
 				31323AC52C52D62C00F4E677 /* TrackerWidget-Extension */,
 				3139F2452C52C98C006BCC99 /* Frameworks */,
@@ -226,7 +231,6 @@
 			isa = PBXGroup;
 			children = (
 				314178932C5700DC00EAA51D /* DataProvider */,
-				3127522A2C42D36B00DC26FE /* seed.json */,
 				312752222C3F301200DC26FE /* Info.plist */,
 				310276A92C321A7800F4207C /* ElevationChangeView.swift */,
 				31EBB2652C2E875B00E4DA30 /* excalliburApp.swift */,
@@ -240,6 +244,7 @@
 				314178942C59872100EAA51D /* Components */,
 				31CF0A2A2C51D82700E9A846 /* Neumorphic */,
 				31323ABA2C52D47C00F4E677 /* Preview Content */,
+				3127522A2C42D36B00DC26FE /* seed.json */,
 			);
 			path = excallibur;
 			sourceTree = "<group>";
@@ -387,10 +392,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31323ABD2C52D49D00F4E677 /* Preview Assets.xcassets in Resources */,
+				31BF046D2D6CDF1F00A704E7 /* Assets.xcassets in Resources */,
 				314178992C59C9E300EAA51D /* DataProvider in Resources */,
 				3127522B2C42D37700DC26FE /* seed.json in Resources */,
-				31EBB26A2C2E875C00E4DA30 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,10 +428,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31BF046B2D6CDEBC00A704E7 /* Neumorphic in Sources */,
 				31EBB2902C2E928C00E4DA30 /* ProximityCounterView.swift in Sources */,
 				310276A82C32131100F4207C /* SettingsView.swift in Sources */,
 				31EBB2682C2E875B00E4DA30 /* TabBarView.swift in Sources */,
 				31AEA6382C4F203100100E5A /* Slider.swift in Sources */,
+				31BF04692D6CC25700A704E7 /* SwipeableRow.swift in Sources */,
 				31BC94262C50AB3B0089DEDD /* NeumorphExamples.swift in Sources */,
 				310276AA2C321A8500F4207C /* ElevationChangeView.swift in Sources */,
 				31CF0A2B2C51D82700E9A846 /* View+InverseMask.swift in Sources */,
@@ -663,7 +669,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"excallibur/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = MK26S2J3QC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -700,7 +706,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"excallibur/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = MK26S2J3QC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
